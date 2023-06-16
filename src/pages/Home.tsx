@@ -37,25 +37,24 @@ const MovieTitle = styled.h3`
 
 
 
-// const movieVariant = {
-//   start: { opacity: 0, y: 10, scale: 0.5 },
-//   exit: {
-//     opacity: 1,
-//     y: 0,
-//     scale: 1,
-//     transition: {
-//       type: "spring",
-//       bounce: 0.5,
-//       duration: 0.5,
-//       delayChildren: 0.2,
-//       staggerChildren: 0.2
-//     }
-//   }
-// };
+const movieVariant = {
+  start: { opacity: 0 },
+  exit: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.2
+    }
+  }
+};
 
+const itemVariant = {
+  start: { y: 20, opacity: 0 },
+  exit: { y: 0, opacity: 1 }
+}
 const boxVariant = {
-  initial: { scale: 1, y: 0 },
-  hover: { scale: 1.2, y: -30, transition: { delay: 0.2 } }
+  start: { y: 10, opacity: 0 },
+  hover: { scale: 1.2, y: -30, transition: { delay: 0.2 } },
 };
 
 export default function Home() {
@@ -76,9 +75,9 @@ export default function Home() {
       {isLoading ? (
         <Loader />
       ) : (
-        <Popular>
+        <Popular variants={movieVariant} initial="start" animate="exit">
           {data?.results.map((movie: IMovie) => (
-            <Wrapper >
+            <Wrapper variants={itemVariant}>
               <Box
                 onClick={() => onBoxClick(movie.id, movie.title)}
                 variants={boxVariant}
