@@ -5,6 +5,7 @@ import Loader from "../component/Loader";
 import { getNowPlaying, IMovie, makeImagePath } from "../api";
 import { useMatch, useNavigate } from "react-router-dom";
 import Modal from "../component/Modal";
+import Overlay from "../component/Overlay";
 
 const NowPlayingList = styled.div`
   margin: 0 auto;
@@ -18,7 +19,7 @@ const NowPlayingList = styled.div`
 const Wrapper = styled(motion.div)`
   position: relative;
 `;
-const Box = styled(motion.div)<{ bgPhoto: string }>`
+const Box = styled(motion.div) <{ bgPhoto: string }>`
   height: 400px;
   border-radius: 10px;
   background-color: white;
@@ -39,13 +40,6 @@ const boxVariant = {
   hover: { scale: 1.2, y: -30, transition: { delay: 0.2 } }
 };
 
-const Overlay = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-`;
 export default function NowPlaying() {
   const { data, isLoading } = useQuery(
     ["movies", "now_playing"],

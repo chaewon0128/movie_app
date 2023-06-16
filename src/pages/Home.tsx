@@ -5,6 +5,7 @@ import Loader from "../component/Loader";
 import { getPopular, IMovie, makeImagePath } from "../api";
 import { useMatch, useNavigate } from "react-router-dom";
 import Modal from "../component/Modal";
+import Overlay from "../component/Overlay";
 
 const Popular = styled(motion.div)`
   margin: 0 auto;
@@ -18,7 +19,7 @@ const Popular = styled(motion.div)`
 const Wrapper = styled(motion.div)`
   position: relative;
 `;
-const Box = styled(motion.div)<{ bgPhoto: string }>`
+const Box = styled(motion.div) <{ bgPhoto: string }>`
   height: 400px;
   border-radius: 10px;
   background-color: white;
@@ -34,29 +35,23 @@ const MovieTitle = styled.h3`
   font-family: "Francois One", sans-serif;
 `;
 
-const Overlay = styled.div`
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  top: 0;
-`;
 
-const movieVariant = {
-  start: { opacity: 0, y: 10, scale: 0.5 },
-  exit: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: "spring",
-      bounce: 0.5,
-      duration: 0.5,
-      delayChildren: 0.2,
-      staggerChildren: 0.2
-    }
-  }
-};
+
+// const movieVariant = {
+//   start: { opacity: 0, y: 10, scale: 0.5 },
+//   exit: {
+//     opacity: 1,
+//     y: 0,
+//     scale: 1,
+//     transition: {
+//       type: "spring",
+//       bounce: 0.5,
+//       duration: 0.5,
+//       delayChildren: 0.2,
+//       staggerChildren: 0.2
+//     }
+//   }
+// };
 
 const boxVariant = {
   initial: { scale: 1, y: 0 },
@@ -83,7 +78,7 @@ export default function Home() {
       ) : (
         <Popular>
           {data?.results.map((movie: IMovie) => (
-            <Wrapper variants={movieVariant} initial="start" animate="end">
+            <Wrapper >
               <Box
                 onClick={() => onBoxClick(movie.id, movie.title)}
                 variants={boxVariant}

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import { getMovie, makeBgPath } from "../api";
+import { IMovieDetail, getMovie, makeBgPath } from "../api";
 import { DeleteIcon } from "../icons/icons";
 
 const ModalBox = styled.div`
@@ -56,7 +56,8 @@ const ModalInfo = styled.p`
 export default function Modal() {
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { data } = useQuery(["movies", "detail"], () =>
+  const { id } = useParams()
+  const { data } = useQuery<IMovieDetail>(["movies", id], () =>
     getMovie(state?.movieId + "")
   );
 
@@ -68,14 +69,16 @@ export default function Modal() {
       <DeleteBtn onClick={onDelete}>
         <DeleteIcon />
       </DeleteBtn>
-      <ModalImage bgImg={makeBgPath(data?.backdrop_path)} />
-      <ModalTitle>{data?.title}</ModalTitle>
-      <ModalOverview>{data?.overview}</ModalOverview>
-      {/* <ModalInfo>Budget : $ {(data?.budget).toLocaleString()}</ModalInfo>
-      <ModalInfo>Revenue: $ {(data?.revenue).toLocaleString()}</ModalInfo> */}
-      <ModalInfo>Runtime : {data?.runtime} minutes</ModalInfo>
-      {/* <ModalInfo>Rating : {(data?.vote_average).toFixed(1)}</ModalInfo> */}
-      <ModalInfo>Homepage : {data?.homepage && null}</ModalInfo>
+      {data && <>
+        <ModalImage bgImg={makeBgPath(data?.backdrop_path || "")} />
+        <ModalTitle>{data?.title}</ModalTitle>
+        <ModalOverview>{data?.overview}</ModalOverview>
+        <ModalInfo>Budget : $ {(data?.budget).toLocaleString()}</ModalInfo>
+        <ModalInfo>Revenue: $ {(data?.revenue).toLocaleString()}</ModalInfo>
+        <ModalInfo>Runtime : {data?.runtime} minutes</ModalInfo>
+        <ModalInfo>Rating : {(data?.vote_average).toFixed(1)}</ModalInfo>
+        <ModalInfo>Homepage : {data?.homepage && null}</ModalInfo>
+      </>}
     </ModalBox>
   );
 }
