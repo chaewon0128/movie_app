@@ -10,7 +10,7 @@ const ModalBox = styled.div`
   left: 0;
   right: 0;
   margin: 0 auto;
-
+  z-index: 99;
   background: rgb(38, 35, 35);
   background: linear-gradient(
     0deg,
