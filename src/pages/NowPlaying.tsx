@@ -7,7 +7,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import Modal from "../component/Modal";
 import Overlay from "../component/Overlay";
 
-const NowPlayingList = styled.div`
+const NowPlayingList = styled(motion.div)`
   margin: 0 auto;
   width: 900px;
   display: grid;
@@ -39,7 +39,21 @@ const boxVariant = {
   initial: { scale: 1, y: 0 },
   hover: { scale: 1.2, y: -30, transition: { delay: 0.2 } }
 };
+const movieVariant = {
+  start: { opacity: 0 },
+  exit: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.2
+    }
+  }
+};
 
+const itemVariant = {
+  start: { y: 20, opacity: 0 },
+  exit: { y: 0, opacity: 1 }
+}
 export default function NowPlaying() {
   const { data, isLoading } = useQuery(
     ["movies", "now_playing"],
@@ -61,9 +75,9 @@ export default function NowPlaying() {
       {isLoading ? (
         <Loader />
       ) : (
-        <NowPlayingList>
+        <NowPlayingList variants={movieVariant} initial="start" animate="exit">
           {data?.results.map((movie: IMovie) => (
-            <Wrapper>
+            <Wrapper variants={itemVariant}>
               <Box
                 onClick={() => onBoxClick(movie.id, movie.title)}
                 variants={boxVariant}

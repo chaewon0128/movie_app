@@ -7,7 +7,7 @@ import { useMatch, useNavigate } from "react-router-dom";
 import Modal from "../component/Modal";
 import Overlay from "../component/Overlay";
 
-const ComingSoonList = styled.div`
+const ComingSoonList = styled(motion.div)`
   margin: 0 auto;
   width: 900px;
   display: grid;
@@ -41,6 +41,21 @@ const boxVariant = {
 };
 
 
+const movieVariant = {
+  start: { opacity: 0 },
+  exit: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.2,
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariant = {
+  start: { y: 20, opacity: 0 },
+  exit: { y: 0, opacity: 1 }
+}
 export default function ComingSoon() {
   const { data, isLoading } = useQuery(
     ["movies", "coming-soon"],
@@ -62,9 +77,9 @@ export default function ComingSoon() {
       {isLoading ? (
         <Loader />
       ) : (
-        <ComingSoonList>
+        <ComingSoonList variants={movieVariant} initial="start" animate="exit">
           {data?.results.map((movie: IMovie) => (
-            <Wrapper>
+            <Wrapper variants={itemVariant}>
               <Box
                 onClick={() => onBoxClick(movie.id, movie.title)}
                 variants={boxVariant}

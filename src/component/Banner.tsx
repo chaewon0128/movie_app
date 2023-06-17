@@ -8,8 +8,6 @@ import { NextBtnIcon, PrevBtnIcon } from "../icons/icons";
 import { Navigate, useNavigate } from "react-router-dom";
 
 
-const Container = styled.div``;
-
 const CommingSoon = styled(motion.div) <{ bgPhoto: string }>`
   position: relative;
   height: 60vh;
@@ -89,36 +87,36 @@ export default function Banner() {
     });
   };
   return (
-    <>
-      <Container>
-        {isLoading ? (
-          <Loader />
-        ) : (
-          <>
-            <AnimatePresence>
-              <CommingSoon
-                variants={bannerVariant}
-                initial="invisible"
-                animate="visible"
-                exit="exit"
-                key={index}
-                bgPhoto={makeBgPath(bannerData[index].backdrop_path)}
-              >
-                <P>Coming Up Next Movie</P>
-                <Title>{bannerData[index].title}</Title>
-                <MoreInfo onClick={() => onBoxClick(bannerData[index].id, bannerData[index].title)}>more Information</MoreInfo>
-              </CommingSoon>
-            </AnimatePresence>
 
-            <NextBtn onClick={onNextIndex}>
-              <NextBtnIcon />
-            </NextBtn>
-            <PrevBtn onClick={onPrevIndex}>
-              <PrevBtnIcon />
-            </PrevBtn>
-          </>
-        )}
-      </Container>
-    </>
+    <div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <AnimatePresence>
+            <CommingSoon
+              variants={bannerVariant}
+              initial="invisible"
+              animate="visible"
+              exit="exit"
+              key={index}
+              bgPhoto={makeBgPath(bannerData[index].backdrop_path)}
+            >
+              <P>Coming Up Next Movie</P>
+              <Title>{bannerData[index].title}</Title>
+              <MoreInfo onClick={() => onBoxClick(bannerData[index].id, bannerData[index].title)}>more Information</MoreInfo>
+            </CommingSoon>
+          </AnimatePresence>
+
+          <NextBtn onClick={onNextIndex}>
+            <NextBtnIcon />
+          </NextBtn>
+          <PrevBtn onClick={onPrevIndex}>
+            <PrevBtnIcon />
+          </PrevBtn>
+        </>
+      )}
+    </div>
+
   );
 }
