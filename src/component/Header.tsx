@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { SearchIcon } from "../icons/icons";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const HeaderMain = styled(motion.div)`
 position: fixed;
@@ -34,6 +35,7 @@ const Input = styled(motion.input)`
     width: 200px;
     height: 30px;
     padding-left: 10px;
+    transform-origin: left center;
 `
 const logoVariant = {
 
@@ -43,9 +45,17 @@ const logoVariant = {
         transition: { duration: 3 }
     },
 }
+
+const inputVariant = {
+    start: { scaleX: 0 },
+    end: { scaleX: 1, transition: { type: "linear" } }
+}
 export default function Header() {
+    const [isSearch, setIsSearch] = useState(false)
     const { scrollY } = useScroll()
     const backgroundColor = useTransform(scrollY, [0, 80], ["rgba(0,0,0,0)", "rgba(0,0,0,0.9)"])
+
+    const showInput = () => { setIsSearch((prev) => !prev) }
     return (
         <HeaderMain style={{ backgroundColor }}>
             <Link to="/">
@@ -61,8 +71,9 @@ export default function Header() {
 
             </Link>
             <Search>
-                <SearchBtn><SearchIcon /></SearchBtn>
-                <Input placeholder="Search for movies.." />
+                <SearchBtn
+                    onClick={showInput}><SearchIcon /></SearchBtn>
+                {isSearch ? <Input variants={inputVariant} initial="start" animate="end" placeholder="Search for movies.." /> : null}
             </Search>
         </HeaderMain>
     );

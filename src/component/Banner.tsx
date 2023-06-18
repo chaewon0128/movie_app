@@ -108,12 +108,12 @@ export default function Banner() {
             </CommingSoon>
           </AnimatePresence>
 
+          <PrevBtn onClick={onPrevIndex} disabled={true}>
+            <PrevBtnIcon />
+          </PrevBtn>
           <NextBtn onClick={onNextIndex}>
             <NextBtnIcon />
           </NextBtn>
-          <PrevBtn onClick={onPrevIndex}>
-            <PrevBtnIcon />
-          </PrevBtn>
         </>
       )}
     </div>
