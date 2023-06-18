@@ -61,6 +61,8 @@ export default function Modal() {
     getMovie(state?.movieId + "")
   );
 
+  console.log(data?.homepage)
+
   const onDelete = () => {
     navigate(-1);
   };
@@ -77,7 +79,7 @@ export default function Modal() {
         <ModalInfo>Revenue: $ {(data?.revenue).toLocaleString()}</ModalInfo>
         <ModalInfo>Runtime : {data?.runtime} minutes</ModalInfo>
         <ModalInfo>Rating : {(data?.vote_average).toFixed(1)}</ModalInfo>
-        <ModalInfo>Homepage : {data?.homepage && null}</ModalInfo>
+        <ModalInfo>Homepage : <a href={data?.homepage}>{data?.homepage}</a></ModalInfo>
       </>}
     </ModalBox>
   );
