@@ -20,7 +20,7 @@ const CommingSoon = styled(motion.div) <{ bgPhoto: string }>`
 const P = styled.p`
   font-size: 20px;
   position: absolute;
-  bottom : 17%;
+  bottom : 18%;
   left: 5%;
   font-family: 'Roboto Slab', serif;
 `
