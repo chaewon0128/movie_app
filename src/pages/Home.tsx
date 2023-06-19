@@ -6,6 +6,7 @@ import { getPopular, IMovie, makeImagePath } from "../api";
 import { useMatch, useNavigate } from "react-router-dom";
 import Modal from "../component/Modal";
 import Overlay from "../component/Overlay";
+import MovieList from "../component/MovieList";
 
 const Popular = styled(motion.div)`
   margin: 0 auto;
@@ -77,16 +78,9 @@ export default function Home() {
       ) : (
         <Popular variants={movieVariant} initial="start" animate="exit">
           {data?.results.map((movie: IMovie) => (
-            <Wrapper variants={itemVariant}>
-              <Box
-                onClick={() => onBoxClick(movie.id, movie.title)}
-                variants={boxVariant}
-                whileHover="hover"
-                transition={{ delay: 0.2 }}
-                bgPhoto={makeImagePath(movie.poster_path)}
-              />
-              <MovieTitle>{movie.original_title}</MovieTitle>
-            </Wrapper>
+
+            <MovieList title={movie.title} bgPhoto={makeImagePath(movie.poster_path)} id={movie.id} />
+
           ))}
         </Popular>
       )}
