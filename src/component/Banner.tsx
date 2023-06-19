@@ -108,7 +108,7 @@ export default function Banner() {
             </CommingSoon>
           </AnimatePresence>
 
-          <PrevBtn onClick={onPrevIndex} disabled={true}>
+          <PrevBtn onClick={onPrevIndex}>
             <PrevBtnIcon />
           </PrevBtn>
           <NextBtn onClick={onNextIndex}>
