@@ -24,28 +24,26 @@ export default function MovieList({ type, data, isLoading }: IMovieList) {
             }
         });
     };
-
-
     return (
         <>
             {isLoading ? (
                 <Loader />
             ) : (
                 <List variants={movieVariant} initial="start" animate="exit">
-                    <Wrapper variants={itemVariant}>
-                        {data?.results.map((movie: IMovie) => (
-                            <>
-                                <Box
-                                    onClick={() => onBoxClick(movie.id, movie.title)}
-                                    variants={boxVariant}
-                                    whileHover="hover"
-                                    transition={{ delay: 0.2 }}
-                                    bgPhoto={makeImagePath(movie.poster_path)}
-                                />
-                                <MovieTitle>{movie.title}</MovieTitle>
-                            </>
-                        ))}
-                    </Wrapper>
+
+                    {data?.results.map((movie: IMovie) => (
+                        <Wrapper variants={itemVariant}>
+                            <Box
+                                onClick={() => onBoxClick(movie.id, movie.title)}
+                                variants={boxVariant}
+                                whileHover="hover"
+                                transition={{ delay: 0.2 }}
+                                bgPhoto={makeImagePath(movie.poster_path)}
+                            />
+                            <MovieTitle>{movie.title}</MovieTitle>
+                        </Wrapper>
+                    ))}
+
                 </List>
             )}
 
