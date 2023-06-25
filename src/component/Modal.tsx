@@ -61,7 +61,6 @@ export default function Modal() {
     getMovie(state?.movieId + "")
   );
 
-  console.log(data?.homepage)
 
   const onDelete = () => {
     navigate(-1);
