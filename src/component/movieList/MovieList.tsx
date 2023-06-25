@@ -1,7 +1,7 @@
 import { useMatch, useNavigate } from 'react-router-dom';
-import Overlay from '../Overlay';
-import Modal from '../Modal';
-import Loader from '../Loader';
+import Overlay from '../overlay/Overlay';
+import Modal from '../modal/Modal';
+import Loader from '../loader/Loader';
 import { IAPIResponse, IMovie, makeImagePath } from '../../api';
 import { Wrapper, Box, MovieTitle, itemVariant, boxVariant, List, movieVariant } from './styled';
 
