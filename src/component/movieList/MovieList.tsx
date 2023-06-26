@@ -2,18 +2,21 @@ import { useMatch, useNavigate } from 'react-router-dom';
 import Overlay from '../overlay/Overlay';
 import Modal from '../modal/Modal';
 import Loader from '../loader/Loader';
-import { IAPIResponse, IMovie, makeImagePath } from '../../api';
+import { IMovie, makeImagePath } from '../../api';
 import { Wrapper, Box, MovieTitle, itemVariant, boxVariant, List, movieVariant } from './styled';
+import useGetMovies from '../../hooks/useGetMovies';
 
 
 interface IMovieList {
-    data: IAPIResponse,
-    isLoading: boolean
-    type: string
+    apikey: () => Promise<any>,
+    type: string,
+    QUERY_KEY: string
+
 };
 
 
-export default function MovieList({ type, data, isLoading }: IMovieList) {
+export default function MovieList({ type, apikey, QUERY_KEY }: IMovieList) {
+    const { data, isLoading } = useGetMovies(QUERY_KEY, apikey);
     const navigate = useNavigate();
     const movieMatch = useMatch(`${type}/movies/:id`);
     const onBoxClick = (id: number, title?: string) => {
@@ -43,10 +46,8 @@ export default function MovieList({ type, data, isLoading }: IMovieList) {
                             <MovieTitle>{movie.title}</MovieTitle>
                         </Wrapper>
                     ))}
-
                 </List>
             )}
-
             {movieMatch && (
                 <>
                     <Overlay />

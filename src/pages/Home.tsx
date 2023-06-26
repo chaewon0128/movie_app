@@ -1,18 +1,14 @@
-import { useQuery } from "@tanstack/react-query";
 import { getPopular } from "../api";
 import MovieList from "../component/movieList/MovieList";
 
-const QUERY_KEY = "popular";
 export default function ComingSoon() {
-  const { data, isLoading } = useQuery(
-    ["movies", QUERY_KEY],
-    getPopular
-  );
 
+  const QUERY_KEY = "popular";
 
   return (
     <>
-      <MovieList data={data} isLoading={isLoading} type={""} />
+      <MovieList apikey={getPopular} type={""} QUERY_KEY={QUERY_KEY} />
+
     </>
   );
 }
