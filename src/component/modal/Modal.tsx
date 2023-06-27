@@ -23,14 +23,14 @@ export default function Modal() {
         <DeleteIcon />
       </DeleteBtn>
       {data && <>
-        <ModalImage bgImg={makeBgPath(data?.backdrop_path || "")} />
-        <ModalTitle>{data?.title}</ModalTitle>
-        <ModalOverview>{data?.overview}</ModalOverview>
-        <ModalInfo>Budget : $ {(data?.budget).toLocaleString()}</ModalInfo>
-        <ModalInfo>Revenue: $ {(data?.revenue).toLocaleString()}</ModalInfo>
-        <ModalInfo>Runtime : {data?.runtime} minutes</ModalInfo>
-        <ModalInfo>Rating : {(data?.vote_average).toFixed(1)}</ModalInfo>
-        <ModalInfo>Homepage : <a href={data?.homepage}>{data?.homepage}</a></ModalInfo>
+        <ModalImage bgImg={makeBgPath(data.backdrop_path || "")} />
+        <ModalTitle>{data.title}</ModalTitle>
+        <ModalOverview>{data.overview}</ModalOverview>
+        <ModalInfo>Budget : $ {(data.budget).toLocaleString()}</ModalInfo>
+        <ModalInfo>Revenue: $ {(data.revenue).toLocaleString()}</ModalInfo>
+        <ModalInfo>Runtime : {data.runtime} minutes</ModalInfo>
+        <ModalInfo>Rating : {(data.vote_average).toFixed(1)}</ModalInfo>
+        <ModalInfo>Homepage : <a href={data.homepage}>{data.homepage}</a></ModalInfo>
       </>}
     </ModalBox>
   );
