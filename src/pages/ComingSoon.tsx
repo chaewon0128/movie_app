@@ -6,7 +6,7 @@ export default function ComingSoon() {
   const QUERY_KEY = "coming-soon";
   return (
     <>
-      <MovieList apikey={getComingSoon} type={QUERY_KEY} QUERY_KEY={QUERY_KEY} />
+      <MovieList apiFn={getComingSoon} type={QUERY_KEY} QUERY_KEY={QUERY_KEY} />
     </>
   );
 }

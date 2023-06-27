@@ -8,15 +8,15 @@ import useGetMovies from '../../hooks/useGetMovies';
 
 
 interface IMovieList {
-    apikey: () => Promise<any>,
+    apiFn: () => Promise<any>,
     type: string,
     QUERY_KEY: string
 
 };
 
 
-export default function MovieList({ type, apikey, QUERY_KEY }: IMovieList) {
-    const { data, isLoading } = useGetMovies(QUERY_KEY, apikey);
+export default function MovieList({ type, apiFn, QUERY_KEY }: IMovieList) {
+    const { data, isLoading } = useGetMovies(QUERY_KEY, apiFn);
     const navigate = useNavigate();
     const movieMatch = useMatch(`${type}/movies/:id`);
     const onBoxClick = (id: number, title?: string) => {

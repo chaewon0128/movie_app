@@ -7,7 +7,7 @@ export default function ComingSoon() {
 
   return (
     <>
-      <MovieList apikey={getPopular} type={""} QUERY_KEY={QUERY_KEY} />
+      <MovieList apiFn={getPopular} type={""} QUERY_KEY={QUERY_KEY} />
 
     </>
   );
