@@ -1,10 +1,10 @@
 import { useMatch, useNavigate } from 'react-router-dom';
 import Overlay from '../overlay/Overlay';
 import Modal from '../modal/Modal';
-import Loader from '../loader/Loader';
 import { IMovie, makeImagePath } from '../../api';
-import { Wrapper, Box, MovieTitle, itemVariant, boxVariant, List, movieVariant } from './styled';
+import { Wrapper, Box, MovieTitle, itemVariant, boxVariant, List, movieVariant, Loader } from './styled';
 import useGetMovies from '../../hooks/useGetMovies';
+import { RotatingLines } from 'react-loader-spinner';
 
 
 interface IMovieList {
@@ -30,12 +30,20 @@ export default function MovieList({ type, apiFn, QUERY_KEY }: IMovieList) {
     return (
         <>
             {isLoading ? (
-                <Loader />
+                <Loader>
+                    <RotatingLines
+                        strokeColor="grey"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="30"
+                        visible={true}
+                    />
+                </Loader>
             ) : (
                 <List variants={movieVariant} initial="start" animate="exit">
 
                     {data?.results.map((movie: IMovie) => (
-                        <Wrapper variants={itemVariant}>
+                        <Wrapper variants={itemVariant} key={movie.id}>
                             <Box
                                 onClick={() => onBoxClick(movie.id, movie.title)}
                                 variants={boxVariant}
