@@ -48,3 +48,10 @@ export const ModalOverview = styled.p`
 export const ModalInfo = styled.p`
   padding: 5px 20px;
 `;
+
+export const Loader = styled.div`
+position : absolute;
+margin: 0 auto;
+top: 20%;
+left: 50%;
+`
