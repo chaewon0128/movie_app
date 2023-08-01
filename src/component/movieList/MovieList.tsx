@@ -49,7 +49,7 @@ export default function MovieList({ type, apiFn, QUERY_KEY }: IMovieList) {
                                 variants={boxVariant}
                                 whileHover="hover"
                                 transition={{ delay: 0.2 }}
-                                bgPhoto={makeImagePath(movie.poster_path)}
+                                bgphoto={makeImagePath(movie.poster_path)}
                             />
                             <MovieTitle>{movie.title}</MovieTitle>
                         </Wrapper>

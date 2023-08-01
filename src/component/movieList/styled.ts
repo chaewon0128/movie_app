@@ -14,10 +14,10 @@ export const Wrapper = styled(motion.div)`
 
 `;
 
-export const Box = styled(motion.div) <{ bgPhoto: string }>`
+export const Box = styled(motion.div) <{ bgphoto: string }>`
   height: 400px;
   border-radius: 10px;
-  background-image: url(${(props) => props.bgPhoto});
+  background-image: url(${(props) => props.bgphoto});
   background-size: cover;
   background-position: center center;
   cursor: pointer;
