@@ -1,62 +1,30 @@
-import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { getComingSoon, makeBgPath } from "../../api";
-import { NextBtnIcon, PrevBtnIcon } from "../../icons/icons";
-import { useNavigate } from "react-router-dom";
-import { CommingSoon, P, Title, MoreInfo, NextBtn, PrevBtn, bannerVariant } from "./styled";
-import useGetMovies from "../../hooks/useGetMovies";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import './styles.css';
+import 'swiper/css/navigation';
+import { Navigation, Pagination } from "swiper";
+import BannerImg from "./BannerImg";
 
 
 export default function Banner() {
-  const { bannerData } = useGetMovies("coming_soon", getComingSoon);
-  const [index, setIndex] = useState(0);
-  const navigate = useNavigate();
-  const onNextIndex = () => {
-    setIndex((prev) =>
-      index === bannerData.length - 1 ? bannerData.length - 1 : prev + 1
-    );
-  };
-  const onPrevIndex = () => {
-    setIndex((prev) => (index === 0 ? 0 : prev - 1));
-  };
 
-  const onBoxClick = (id: number, title?: string) => {
-    navigate(`movies/${id}`, {
-      state: {
-        movieTitle: title,
-        movieId: id
-      }
-    });
-  };
   return (
+    <>
+      <Swiper navigation={true} pagination={true} modules={[Navigation, Pagination]} className="mySwiper">
 
-    <div>
-      {bannerData &&
-        <>
-          <AnimatePresence>
-            <CommingSoon
-              variants={bannerVariant}
-              initial="invisible"
-              animate="visible"
-              exit="exit"
-              key={index}
-              bgPhoto={makeBgPath(bannerData[index].backdrop_path)}
-            >
-              <P>Coming Up Next Movie</P>
-              <Title>{bannerData[index].title}</Title>
-              <MoreInfo onClick={() => onBoxClick(bannerData[index].id, bannerData[index].title)}>more Information</MoreInfo>
-            </CommingSoon>
-          </AnimatePresence>
+        <SwiperSlide>
+          <BannerImg index="0" />
+        </SwiperSlide>
 
-          <PrevBtn onClick={onPrevIndex}>
-            <PrevBtnIcon />
-          </PrevBtn>
-          <NextBtn onClick={onNextIndex}>
-            <NextBtnIcon />
-          </NextBtn>
-        </>
-      }
-    </div>
+        <SwiperSlide>
+          <BannerImg index="1" />
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <BannerImg index="2" />
+        </SwiperSlide>
+      </Swiper>
+    </>
 
   );
 }

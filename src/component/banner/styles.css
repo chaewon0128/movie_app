@@ -1,0 +1,60 @@
+.swiper {
+    min-width: 700px;
+    width: 100%;
+    height: 400px
+        /* 임의 높이 */
+}
+
+.swiper-slide {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 700;
+    position: relative;
+    text-shadow: #000000 1px 0 10px;
+}
+
+.swiper-slide p {
+    position: absolute;
+    color: white;
+    left: 20px;
+
+}
+
+.swiper-slide .coming-up {
+    bottom: 50px;
+    font-size: 20px;
+}
+
+.swiper-slide .title {
+    bottom: 10px;
+    font-size: 30px;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.swiper-slide .loader {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide .more-button {
+    cursor: pointer;
+    padding: 10px 10px;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    position: absolute;
+    color: #ffffff;
+    bottom: 5%;
+    text-shadow: #000000 1px 0 10px;
+    right: 5%;
+    font-family: 'Roboto Slab', serif;
+    font-weight: 600;
+}
